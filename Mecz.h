@@ -15,6 +15,7 @@ private:
 
 public:
     void ustawWynik(int goleGosp, int goleGosc);
+    void ustawDruzyny(Druzyna* gosp, Druzyna* goscZespol);
     void rozegraj() override;
     std::string pobierzSzczegoly() override;
 };

@@ -8,6 +8,11 @@ using namespace std;
 void Mecz::ustawWynik(int goleGosp, int goleGosc) {
 }
 
+void Mecz::ustawDruzyny(Druzyna* gosp, Druzyna* gosc){
+    gospodarz = gosp;
+    gosc = gosc;  
+}
+
 void Mecz::rozegraj() {
 }
 
