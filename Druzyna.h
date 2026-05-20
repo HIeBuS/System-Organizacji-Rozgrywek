@@ -11,6 +11,7 @@ private:
     int bramkiStracone;
 
 public:
+    Druzyna();
     void ustawNazwe(std::string nowaNazwa);
     std::string pobierzNazwe();
     void dodajWynik(int strzelone, int stracone);
