@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <algorithm>
 #include <windows.h>
 #include "Liga.h"
 
@@ -19,9 +20,25 @@ void Liga::usunDruzyne(string nazwa) {
 }
 
 void Liga::generujTerminarz() {
+    terminarz.clear();
+
+    int liczbaDruzyn = listaDruzyn.size();
+    if (liczbaDruzyn < 2) return; // za malo druzyn na lige
+
+    for (int i = 0; i < liczbaDruzyn; ++i) {
+        for (int j = i + 1; j < liczbaDruzyn; ++j) {
+            Mecz nowyMecz;
+            nowyMecz.ustawDruzyny(&listaDruzyn[i], &listaDruzyn[j]);
+            nowyMecz.ustawDate("2026-05-21");
+            terminarz.push_back(nowyMecz);
+        }
+    }
 }
 
 void Liga::posortujTabele() {
+    std::sort(listaDruzyn.begin(), listaDruzyn.end(), [](Druzyna& a, Druzyna& b) {
+        return a.operatorWyzszy(b);
+    });
 }
 
 vector<Druzyna> Liga::pobierzTabele() {
