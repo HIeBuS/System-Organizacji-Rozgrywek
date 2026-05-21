@@ -9,8 +9,8 @@ void Mecz::ustawWynik(int goleGosp, int goleGosc) {
 }
 
 void Mecz::ustawDruzyny(Druzyna* gosp, Druzyna* gosc){
-    gospodarz = gosp;
-    gosc = gosc;  
+    this->gospodarz = gosp;
+    this->gosc = gosc;  
 }
 
 void Mecz::rozegraj() {
