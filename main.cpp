@@ -8,6 +8,5 @@ using namespace std;
 int main() {
     Interface aplikacja;
     aplikacja.uruchomMenuGlowne();
-    cout<<"Hello world!";
     return 0;
 }

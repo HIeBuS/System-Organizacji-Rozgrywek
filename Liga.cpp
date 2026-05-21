@@ -42,5 +42,5 @@ void Liga::posortujTabele() {
 }
 
 vector<Druzyna> Liga::pobierzTabele() {
-    return vector<Druzyna>();
+    return listaDruzyn;
 }

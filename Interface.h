@@ -14,7 +14,6 @@ public:
     void uruchomMenuGlowne();
     int wczytajWyborUzytkownika();
     void wyswietlTabeleLigowa();
-    void pokazKomunikat(std::string wiadomosc);
 };
 
 #endif
