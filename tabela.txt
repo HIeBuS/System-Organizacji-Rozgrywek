@@ -3,16 +3,16 @@ Gornik Zabrze
 Jagiellonia Bialystok
 Rakow Czestochowa
 GKS Katowice
-Zaglebie Lubin
 Legia Warszawa
+Zaglebie Lubin
 Wisla Plock
-Radomiak Radom
 Pogon Szczecin
-Motor Lublin
+Radomiak Radom
 Korona Kielce
-Piast Gliwice
+Motor Lublin
 Cracovia
 Widzew Lodz
-Lechia Gdansk
+Piast Gliwice
+Lechia Gdańsk
 Arka Gdynia
-Bruk-Bet Termalica
+Bruk-Bet Termalica Nieciecza

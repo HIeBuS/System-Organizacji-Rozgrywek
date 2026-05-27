@@ -44,3 +44,6 @@ void Liga::posortujTabele() {
 vector<Druzyna> Liga::pobierzTabele() {
     return listaDruzyn;
 }
+
+void Liga::rozegrajSpotkanie(string nazwaGosp, string nazwaGosc, int goleGosp, int goleGosc) {
+}
