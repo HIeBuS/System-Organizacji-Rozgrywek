@@ -18,6 +18,9 @@ public:
     int pobierzPunkty() const;
     int obliczBilans() const;
     bool operatorWyzszy(Druzyna inna) const;
+    int pobierzBramkiStrzelone() const;
+    int pobierzBramkiStracone() const;
+    void ustawStatystyki(int pkt, int strzelone, int stracone);
 };
 
 #endif

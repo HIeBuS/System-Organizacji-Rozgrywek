@@ -57,3 +57,17 @@ bool Druzyna::operatorWyzszy(Druzyna inna) const {
     }
     return obliczBilans() > inna.obliczBilans();
 }
+
+int Druzyna::pobierzBramkiStrzelone() const {
+    return bramkiStrzelone;
+}
+
+int Druzyna::pobierzBramkiStracone() const {
+    return bramkiStracone;
+}
+
+void Druzyna::ustawStatystyki(int pkt, int strzelone, int stracone) {
+    punkty = pkt;
+    bramkiStrzelone = strzelone;
+    bramkiStracone = stracone;
+}

@@ -13,6 +13,7 @@ void Dane::rzucWyjatekBrakPliku(string sciezka) {
 }
 
 //zapis do pliku
+//zapis do pliku
 void Dane::zapiszStanLigi(Liga l, string sciezka) {
     ofstream plik(sciezka);
     if (!plik.is_open()) {
@@ -22,10 +23,14 @@ void Dane::zapiszStanLigi(Liga l, string sciezka) {
     vector<Druzyna> tabela = l.pobierzTabele();
     for (Druzyna d : tabela) {
         plik << d.pobierzNazwe() << endl;
+        plik << d.pobierzPunkty() << endl;
+        plik << d.pobierzBramkiStrzelone() << endl;
+        plik << d.pobierzBramkiStracone() << endl;
     }
     plik.close();
 }
 
+//odczyt z pliku
 //odczyt z pliku
 Liga Dane::wczytajStanLigi(string sciezka) {
     Liga nowaLiga;
@@ -35,10 +40,18 @@ Liga Dane::wczytajStanLigi(string sciezka) {
         rzucWyjatekBrakPliku(sciezka);
     }
     
-    string nazwa;
+    string nazwa, pktStr, strzStr, stracStr;
     while (getline(plik, nazwa)) {
+        if (nazwa.empty()) continue; 
+        if (nazwa.back() == '\r') nazwa.pop_back(); 
+        
+        getline(plik, pktStr);
+        getline(plik, strzStr);
+        getline(plik, stracStr);
+        
         Druzyna d;
         d.ustawNazwe(nazwa);
+        d.ustawStatystyki(stoi(pktStr), stoi(strzStr), stoi(stracStr));
         nowaLiga.dodajDruzyne(d);
     }
     
