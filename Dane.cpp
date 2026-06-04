@@ -13,7 +13,6 @@ void Dane::rzucWyjatekBrakPliku(string sciezka) {
 }
 
 //zapis do pliku
-//zapis do pliku
 void Dane::zapiszStanLigi(Liga l, string sciezka) {
     ofstream plik(sciezka);
     if (!plik.is_open()) {
@@ -30,7 +29,6 @@ void Dane::zapiszStanLigi(Liga l, string sciezka) {
     plik.close();
 }
 
-//odczyt z pliku
 //odczyt z pliku
 Liga Dane::wczytajStanLigi(string sciezka) {
     Liga nowaLiga;

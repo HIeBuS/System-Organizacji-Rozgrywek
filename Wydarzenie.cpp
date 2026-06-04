@@ -6,8 +6,9 @@
 using namespace std;
 
 void Wydarzenie::ustawDate(string data) {
+    dataWydarzenia = data;
 }
 
 string Wydarzenie::pobierzSzczegoly() {
-    return "";
+    return "Data wydarzenia: " + dataWydarzenia;
 }
