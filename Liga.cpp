@@ -46,4 +46,44 @@ vector<Druzyna> Liga::pobierzTabele() {
 }
 
 void Liga::rozegrajSpotkanie(string nazwaGosp, string nazwaGosc, int goleGosp, int goleGosc) {
+    Druzyna* wskaznikGosp = nullptr;
+    Druzyna* wskaznikGosc = nullptr;
+
+    // Przeszukujemy liste druzyn
+    for (int i = 0; i < listaDruzyn.size(); i++) {
+        if (listaDruzyn[i].pobierzNazwe() == nazwaGosp) {
+            wskaznikGosp = &listaDruzyn[i]; // zapisujemy gospodarza
+        }
+        if (listaDruzyn[i].pobierzNazwe() == nazwaGosc) {
+            wskaznikGosc = &listaDruzyn[i]; // zapisujemy goscia
+        }
+    }
+
+    if (wskaznikGosp != nullptr && wskaznikGosc != nullptr) {
+        Mecz spotkanie;
+        spotkanie.ustawDruzyny(wskaznikGosp, wskaznikGosc);
+        spotkanie.ustawWynik(goleGosp, goleGosc);
+        spotkanie.rozegraj(); 
+        
+        cout << "Wynik meczu zostal pomyslnie dopisany!" << endl;
+    } else {
+        cout << "Blad: Przynajmniej jedna z druzyn nie istnieje w lidze." << endl;
+    }
+}
+
+void Liga::wyswietlTerminarz() {
+    if (terminarz.size() == 0) {
+        cout << "Terminarz jest pusty. Wygeneruj go najpierw." << endl;
+        return;
+    }
+
+    cout << "--- TERMINARZ ROZGRYWEK ---" << endl;
+    
+    int numer = 1; // numeracja
+    
+    // wypisywanie terminarzu
+    for (int i = 0; i < terminarz.size(); i++) {
+        cout << numer << ". " << terminarz[i].pobierzSzczegoly() << endl;
+        numer++;
+    }
 }

@@ -18,6 +18,7 @@ public:
     void posortujTabele();
     std::vector<Druzyna> pobierzTabele();
     void rozegrajSpotkanie(std::string nazwaGosp, std::string nazwaGosc, int goleGosp, int goleGosc);
+    void wyswietlTerminarz();
 };
 
 #endif
