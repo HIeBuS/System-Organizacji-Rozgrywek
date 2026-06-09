@@ -52,10 +52,16 @@ int Druzyna::obliczBilans() const {
 
 //Kryteria sortowania w tabeli
 bool Druzyna::operatorWyzszy(Druzyna inna) const {
+    //Punkty
     if(punkty != inna.pobierzPunkty()) {
         return punkty > inna.pobierzPunkty();
     }
-    return obliczBilans() > inna.obliczBilans();
+    //Bilans bramek
+    if(obliczBilans() != inna.obliczBilans()) {
+        return obliczBilans() > inna.obliczBilans();
+    }
+    //domyślnie alfabetycznie od A do Z
+    return nazwa < inna.pobierzNazwe();
 }
 
 int Druzyna::pobierzBramkiStrzelone() const {

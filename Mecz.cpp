@@ -40,8 +40,8 @@ string Mecz::pobierzSzczegoly() {
     string infoOData = Wydarzenie::pobierzSzczegoly(); 
 
     if (czyRozegrany) {
-        return gospodarz->pobierzNazwe() + " " + to_string(goleGospodarza) + ":" + to_string(goleGoscia) + " " + gosc->pobierzNazwe() + " (" + infoOData + ")";
+        return gospodarz->pobierzNazwe() + " " + to_string(goleGospodarza) + ":" + to_string(goleGoscia) + " " + gosc->pobierzNazwe() + " (" + infoOData + ")\n";
     } else {
-        return gospodarz->pobierzNazwe() + " vs " + gosc->pobierzNazwe() + " [Zaplanowany | " + infoOData + "]";
+        return gospodarz->pobierzNazwe() + " vs " + gosc->pobierzNazwe() + " [Zaplanowany | " + infoOData + "]\n";
     }
 }

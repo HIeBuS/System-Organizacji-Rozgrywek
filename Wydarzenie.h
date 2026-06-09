@@ -11,6 +11,7 @@ public:
     void ustawDate(std::string data);
     virtual void rozegraj() = 0;
     virtual std::string pobierzSzczegoly();
+    virtual ~Wydarzenie() {}
 };
 
 #endif

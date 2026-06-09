@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <windows.h>
 #include <iomanip>
+#include <sstream>
 #include "Interface.h"
 
 using namespace std;
@@ -12,36 +13,71 @@ void Interface::uruchomMenuGlowne() {
         system("cls");
         cout << "--- SYSTEM ORGANIZACJI ROZGRYWEK ---"<<endl;
         cout << "1. Dodaj druzyne"<<endl;
-        cout << "2. Wyswietl tabele ligowa"<<endl;
-        cout << "3. Rozegraj mecz"<<endl;
-        cout << "4. Generuj terminarz"<<endl;
-        cout << "5. Wyswietl terminarz"<<endl;
-        cout << "6. Zapisz stan ligi"<<endl;
-        cout << "7. Wczytaj stan ligi"<<endl;
-        cout << "8. Zakoncz"<<endl;
+        cout << "2. Usun druzyne"<<endl;
+        cout << "3. Wyswietl tabele ligowa"<<endl;
+        cout << "4. Rozegraj mecz"<<endl;
+        cout << "5. Generuj terminarz"<<endl;
+        cout << "6. Wyswietl terminarz"<<endl;
+        cout << "7. Zapisz stan ligi"<<endl;
+        cout << "8. Wczytaj stan ligi"<<endl;
+        cout << "0. Zakoncz"<<endl;
         
         int wybor = wczytajWyborUzytkownika();
-        string pauza; // Zmienna do lapania entera
+        string pauza;
         
         //reakcja na wybor uzytkownika
         switch (wybor) {
             case 1: {
-                string nazwa;
-                cout << "Podaj nazwe druzyny: ";
-                getline(cin, nazwa); 
-                Druzyna d;
-                d.ustawNazwe(nazwa);
-                aktualnaLiga.dodajDruzyne(d);
+                string wpisaneNazwy;
+                cout << "Podaj nazwe druzyny (lub kilka oddzielonych przecinkiem): ";
+                getline(cin, wpisaneNazwy); 
                 
-                cout << "\nDodano druzyne: " << nazwa << endl;
-                cout << "Wcisnij Enter, aby kontynuowac...";
+                stringstream ss(wpisaneNazwy);
+                string nazwa;
+
+                while (getline(ss, nazwa, ',')) {
+                    if (!nazwa.empty() && nazwa[0] == ' ') nazwa.erase(0, 1); 
+
+                    try {
+                        Druzyna d;
+                        d.ustawNazwe(nazwa); 
+                        aktualnaLiga.dodajDruzyne(d); 
+                        cout << "Dodano: " << nazwa << endl;
+                    } catch (const exception& e) {
+                        cout << "Blad (" << nazwa << "): " << e.what() << endl;
+                    }
+                }
+                
+                cout << "\nWcisnij Enter, aby kontynuowac...";
                 getline(cin, pauza);
                 break;
             }
-            case 2:
+
+            case 2: {
+                string wpisaneNazwy;
+                cout << "Podaj nazwe druzyny do usuniecia (lub kilka oddzielonych przecinkiem): ";
+                getline(cin, wpisaneNazwy); 
+                
+                stringstream ss(wpisaneNazwy);
+                string nazwa;
+
+                while (getline(ss, nazwa, ',')) {
+                    if (!nazwa.empty() && nazwa[0] == ' ') nazwa.erase(0, 1); 
+
+                    aktualnaLiga.usunDruzyne(nazwa); 
+                    cout << "Usunieto: " << nazwa << endl;
+                }
+                
+                cout << "\nWcisnij Enter, aby kontynuowac...";
+                getline(cin, pauza);
+                break;
+            }
+
+            case 3:
                 wyswietlTabeleLigowa();
                 break;
-            case 3: {
+
+            case 4: {
                 //pobieranie danych meczowych
                 string gosp, gosc;
                 int goleGosp, goleGosc;
@@ -82,26 +118,39 @@ void Interface::uruchomMenuGlowne() {
                 getline(cin, pauza);
                 break;
             }
-            case 4:
+
+            case 5:
                 aktualnaLiga.generujTerminarz();
                 cout << "\nTerminarz zostal pomyslnie wygenerowany!" << endl;
                 cout << "Wcisnij Enter, aby kontynuowac...";
                 getline(cin, pauza);
                 break;
-            case 5:
+
+            case 6:
                 cout << endl;
                 aktualnaLiga.wyswietlTerminarz();
                 cout << "\nWcisnij Enter, aby kontynuowac...";
                 getline(cin, pauza);
                 break;
-            case 6:
-                obslugaDanych.zapiszStanLigi(aktualnaLiga, "tabela.txt");
+
+            case 7: {
+                string nazwaPlikuZapisu;
+                cout << "Podaj nazwe pliku do zapisu: ";
+                getline(cin, nazwaPlikuZapisu);
                 
-                cout << "\nZapisano stan ligi do pliku" << endl;
+                try {
+                    obslugaDanych.zapiszStanLigi(aktualnaLiga, nazwaPlikuZapisu);
+                    cout << "\nZapisano stan ligi do pliku: " << nazwaPlikuZapisu << endl;
+                } catch (const exception& e) {
+                    cout << "\nBlad zapisu: " << e.what() << endl;
+                }
+                
                 cout << "Wcisnij Enter, aby kontynuowac...";
                 getline(cin, pauza);
                 break;
-            case 7: {
+            }
+
+            case 8: {
                 string nazwaPliku;
                 cout << "Podaj nazwe pliku: ";
                 getline(cin, nazwaPliku);
@@ -115,7 +164,8 @@ void Interface::uruchomMenuGlowne() {
                 getline(cin, pauza);
                 break;
             }
-            case 8:
+
+            case 0:
                 exit(0);
                 break;
             default:
