@@ -14,6 +14,7 @@ private:
     bool czyRozegrany;
 
 public:
+    Mecz();
     void ustawWynik(int goleGosp, int goleGosc);
     void ustawDruzyny(Druzyna* gosp, Druzyna* goscZespol);
     void rozegraj() override;

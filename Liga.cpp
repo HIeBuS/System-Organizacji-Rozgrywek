@@ -25,11 +25,26 @@ void Liga::generujTerminarz() {
     int liczbaDruzyn = listaDruzyn.size();
     if (liczbaDruzyn < 2) return; // za malo druzyn na lige
 
+    int dzien = 1;
+    int miesiac = 8; 
+
     for (int i = 0; i < liczbaDruzyn; ++i) {
+        dzien += 7;
+        if (dzien > 30) {
+            dzien -= 30;
+            miesiac++;
+        }
+
+        string dataTekst = "2026-";
+        if (miesiac < 10) dataTekst += "0";
+        dataTekst += to_string(miesiac) + "-";
+        if (dzien < 10) dataTekst += "0";
+        dataTekst += to_string(dzien);
+
         for (int j = i + 1; j < liczbaDruzyn; ++j) {
             Mecz nowyMecz;
             nowyMecz.ustawDruzyny(&listaDruzyn[i], &listaDruzyn[j]);
-            nowyMecz.ustawDate("2026-05-21");
+            nowyMecz.ustawDate(dataTekst);
             terminarz.push_back(nowyMecz);
         }
     }

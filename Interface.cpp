@@ -14,9 +14,11 @@ void Interface::uruchomMenuGlowne() {
         cout << "1. Dodaj druzyne"<<endl;
         cout << "2. Wyswietl tabele ligowa"<<endl;
         cout << "3. Rozegraj mecz"<<endl;
-        cout << "4. Zapisz stan ligi"<<endl;
-        cout << "5. Wczytaj stan ligi"<<endl;
-        cout << "6. Zakoncz"<<endl;
+        cout << "4. Generuj terminarz"<<endl;
+        cout << "5. Wyswietl terminarz"<<endl;
+        cout << "6. Zapisz stan ligi"<<endl;
+        cout << "7. Wczytaj stan ligi"<<endl;
+        cout << "8. Zakoncz"<<endl;
         
         int wybor = wczytajWyborUzytkownika();
         string pauza; // Zmienna do lapania entera
@@ -55,7 +57,7 @@ void Interface::uruchomMenuGlowne() {
                 if(cin.fail()) { 
                     cin.clear(); 
                     cin.ignore(10000, '\n'); 
-                    cout << "\nBlad! Podano nieprawidlowa wartosc." << endl;
+                    cout << "\nBlad! Podano nieprawidlowa wartosc" << endl;
                     cout << "Wcisnij Enter, aby kontynuowac..."; 
                     getline(cin, pauza); 
                     break; 
@@ -66,7 +68,7 @@ void Interface::uruchomMenuGlowne() {
                 if(cin.fail()) { 
                     cin.clear(); 
                     cin.ignore(10000, '\n'); 
-                    cout << "\nBlad! Podano nieprawidlowa wartosc." << endl;
+                    cout << "\nBlad! Podano nieprawidlowa wartosc" << endl;
                     cout << "Wcisnij Enter, aby kontynuowac..."; 
                     getline(cin, pauza); 
                     break; 
@@ -76,19 +78,30 @@ void Interface::uruchomMenuGlowne() {
                 //przekazanie do silnika ligi
                 aktualnaLiga.rozegrajSpotkanie(gosp, gosc, goleGosp, goleGosc);
                 
-                cout << "\nMecz przekazany do rozegrania!" << endl;
                 cout << "Wcisnij Enter, aby kontynuowac...";
                 getline(cin, pauza);
                 break;
             }
             case 4:
+                aktualnaLiga.generujTerminarz();
+                cout << "\nTerminarz zostal pomyslnie wygenerowany!" << endl;
+                cout << "Wcisnij Enter, aby kontynuowac...";
+                getline(cin, pauza);
+                break;
+            case 5:
+                cout << endl;
+                aktualnaLiga.wyswietlTerminarz();
+                cout << "\nWcisnij Enter, aby kontynuowac...";
+                getline(cin, pauza);
+                break;
+            case 6:
                 obslugaDanych.zapiszStanLigi(aktualnaLiga, "tabela.txt");
                 
                 cout << "\nZapisano stan ligi do pliku" << endl;
                 cout << "Wcisnij Enter, aby kontynuowac...";
                 getline(cin, pauza);
                 break;
-            case 5: {
+            case 7: {
                 string nazwaPliku;
                 cout << "Podaj nazwe pliku: ";
                 getline(cin, nazwaPliku);
@@ -102,7 +115,7 @@ void Interface::uruchomMenuGlowne() {
                 getline(cin, pauza);
                 break;
             }
-            case 6:
+            case 8:
                 exit(0);
                 break;
             default:
